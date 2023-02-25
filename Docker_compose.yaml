@@ -1,0 +1,23 @@
+version: '3'
+services:
+  webapp1:
+    build: ./web01
+    ports:
+      - "83:5000"
+  webapp2:
+    build: ./web02
+    ports:
+      - "84:5000"
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - webapp1
+      - webapp2
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+~                    
